@@ -9,31 +9,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.BlogDto = void 0;
+exports.BlogCategoryDto = void 0;
 const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-class BlogDto {
+class BlogCategoryDto {
     title;
     content;
-    category;
     static _OPENAPI_METADATA_FACTORY() {
-        return { title: { required: true, type: () => String }, content: { required: true, type: () => String }, category: { required: true, type: () => String } };
+        return { title: { required: true, type: () => String }, content: { required: true, type: () => String } };
     }
 }
-exports.BlogDto = BlogDto;
+exports.BlogCategoryDto = BlogCategoryDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], BlogDto.prototype, "title", void 0);
+], BlogCategoryDto.prototype, "title", void 0);
 __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
-], BlogDto.prototype, "content", void 0);
-__decorate([
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], BlogDto.prototype, "category", void 0);
-//# sourceMappingURL=blog.dto.js.map
+], BlogCategoryDto.prototype, "content", void 0);
+//# sourceMappingURL=blog-category.dto.js.map
