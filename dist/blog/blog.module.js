@@ -6,25 +6,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.BlogModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const blog_module_1 = require("./blog/blog.module");
+const blog_controller_1 = require("./blog.controller");
+const blog_service_1 = require("./blog.service");
 const mongoose_1 = require("@nestjs/mongoose");
-const config_1 = require("@nestjs/config");
-let AppModule = class AppModule {
+const blog_schema_1 = require("./schemas/blog.schema");
+let BlogModule = class BlogModule {
 };
-exports.AppModule = AppModule;
-exports.AppModule = AppModule = __decorate([
+exports.BlogModule = BlogModule;
+exports.BlogModule = BlogModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            blog_module_1.BlogModule,
-            config_1.ConfigModule.forRoot({ isGlobal: true }),
-            mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI),
+            mongoose_1.MongooseModule.forFeature([
+                {
+                    name: blog_schema_1.BlogSchema.name,
+                    schema: blog_schema_1.blogSchema,
+                },
+            ]),
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [blog_controller_1.BlogController],
+        providers: [blog_service_1.BlogService],
     })
-], AppModule);
-//# sourceMappingURL=app.module.js.map
+], BlogModule);
+//# sourceMappingURL=blog.module.js.map
