@@ -15,15 +15,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlogService = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
-const blog_schema_1 = require("./schemas/blog.schema");
+const blog_schema_1 = require("../schemas/blog.schema");
 const mongoose_2 = require("mongoose");
-const sort_utils_1 = require("../shared/utils/sort-utils");
+const sort_utils_1 = require("../../shared/utils/sort-utils");
 let BlogService = class BlogService {
     blogModel;
     constructor(blogModel) {
         this.blogModel = blogModel;
     }
-    async findAll(queryParams) {
+    async findAll(queryParams, selectObject = { __v: 0 }) {
         const { page = 1, limit = 5, title, sort } = queryParams;
         const query = {};
         if (title) {
@@ -32,15 +32,21 @@ let BlogService = class BlogService {
         const sortObject = (0, sort_utils_1.sortFunction)(sort);
         const blogs = await this.blogModel
             .find(query)
+            .populate('category', { title: 1, content: 1 })
             .skip(page - 1)
             .sort(sortObject)
+            .select(selectObject)
             .limit(limit)
             .exec();
         const count = await this.blogModel.countDocuments(query);
         return { count, blogs };
     }
-    async findOneBlog(id) {
-        const blog = await this.blogModel.findOne({ _id: id }).exec();
+    async findOneBlog(id, selectObject = { __v: 0 }) {
+        const blog = await this.blogModel
+            .findOne({ _id: id })
+            .populate('category')
+            .select(selectObject)
+            .exec();
         if (blog) {
             return blog;
         }
@@ -54,14 +60,12 @@ let BlogService = class BlogService {
         return newBlog;
     }
     async update(id, body) {
-        const blog = await this.findOneBlog(id);
-        blog.title = body.title;
-        blog.content = body.content;
-        await blog.save();
-        return blog;
+        return await this.blogModel.findByIdAndUpdate(id, body, {
+            new: true,
+        });
     }
     async delete(id) {
-        const blog = await this.findOneBlog(id);
+        const blog = await this.findOneBlog(id, { _id: 1 });
         await blog.deleteOne();
     }
 };

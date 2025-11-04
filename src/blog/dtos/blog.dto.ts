@@ -10,4 +10,7 @@ export class BlogDto {
   @IsString()
   @IsNotEmpty()
   content: string;
+  @IsString()
+  @IsNotEmpty()
+  category: string;
 }

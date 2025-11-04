@@ -9,34 +9,24 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.blogSchema = exports.BlogSchema = void 0;
+exports.blogCategorySchema = exports.BlogCategorySchema = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-const blog_category_schema_1 = require("./blog-category.schema");
-let BlogSchema = class BlogSchema extends mongoose_2.Document {
+let BlogCategorySchema = class BlogCategorySchema extends mongoose_2.Document {
     title;
     content;
-    category;
 };
-exports.BlogSchema = BlogSchema;
+exports.BlogCategorySchema = BlogCategorySchema;
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], BlogSchema.prototype, "title", void 0);
+], BlogCategorySchema.prototype, "title", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
-], BlogSchema.prototype, "content", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({
-        type: mongoose_2.Types.ObjectId,
-        ref: blog_category_schema_1.BlogCategorySchema.name,
-        required: true,
-    }),
-    __metadata("design:type", blog_category_schema_1.BlogCategorySchema)
-], BlogSchema.prototype, "category", void 0);
-exports.BlogSchema = BlogSchema = __decorate([
+], BlogCategorySchema.prototype, "content", void 0);
+exports.BlogCategorySchema = BlogCategorySchema = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
-], BlogSchema);
-exports.blogSchema = mongoose_1.SchemaFactory.createForClass(BlogSchema);
-//# sourceMappingURL=blog.schema.js.map
+], BlogCategorySchema);
+exports.blogCategorySchema = mongoose_1.SchemaFactory.createForClass(BlogCategorySchema);
+//# sourceMappingURL=blog-category.schema.js.map

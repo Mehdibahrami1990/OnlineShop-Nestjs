@@ -8,9 +8,9 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { BlogDto } from './dtos/blog.dto';
-import { BlogService } from './blog.service';
-import { BlogQueryDto } from './dtos/blog-query.dto';
+import { BlogDto } from '../dtos/blog.dto';
+import { BlogService } from '../services/blog.service';
+import { BlogQueryDto } from '../dtos/blog-query.dto';
 
 // @ApiTags('Blog')
 @Controller('blog')

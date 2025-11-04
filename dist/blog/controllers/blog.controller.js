@@ -15,9 +15,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlogController = void 0;
 const openapi = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
-const blog_dto_1 = require("./dtos/blog.dto");
-const blog_service_1 = require("./blog.service");
-const blog_query_dto_1 = require("./dtos/blog-query.dto");
+const blog_dto_1 = require("../dtos/blog.dto");
+const blog_service_1 = require("../services/blog.service");
+const blog_query_dto_1 = require("../dtos/blog-query.dto");
 let BlogController = class BlogController {
     blogService;
     constructor(blogService) {

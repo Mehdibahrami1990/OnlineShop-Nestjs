@@ -8,10 +8,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BlogModule = void 0;
 const common_1 = require("@nestjs/common");
-const blog_controller_1 = require("./blog.controller");
-const blog_service_1 = require("./blog.service");
+const blog_controller_1 = require("./controllers/blog.controller");
+const blog_service_1 = require("./services/blog.service");
 const mongoose_1 = require("@nestjs/mongoose");
 const blog_schema_1 = require("./schemas/blog.schema");
+const blog_category_controller_1 = require("./controllers/blog-category.controller");
+const blog_category_service_1 = require("./services/blog-category.service");
+const blog_category_schema_1 = require("./schemas/blog-category.schema");
 let BlogModule = class BlogModule {
 };
 exports.BlogModule = BlogModule;
@@ -23,10 +26,14 @@ exports.BlogModule = BlogModule = __decorate([
                     name: blog_schema_1.BlogSchema.name,
                     schema: blog_schema_1.blogSchema,
                 },
+                {
+                    name: blog_category_schema_1.BlogCategorySchema.name,
+                    schema: blog_category_schema_1.blogCategorySchema,
+                },
             ]),
         ],
-        controllers: [blog_controller_1.BlogController],
-        providers: [blog_service_1.BlogService],
+        controllers: [blog_controller_1.BlogController, blog_category_controller_1.BlogCategoryController],
+        providers: [blog_service_1.BlogService, blog_category_service_1.BlogCategoryService],
     })
 ], BlogModule);
 //# sourceMappingURL=blog.module.js.map
