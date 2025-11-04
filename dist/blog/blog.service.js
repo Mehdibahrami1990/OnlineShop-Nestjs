@@ -17,20 +17,26 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const blog_schema_1 = require("./schemas/blog.schema");
 const mongoose_2 = require("mongoose");
+const sort_utils_1 = require("../shared/utils/sort-utils");
 let BlogService = class BlogService {
     blogModel;
     constructor(blogModel) {
         this.blogModel = blogModel;
     }
     async findAll(queryParams) {
-        const { page = 1, limit = 5, title } = queryParams;
-        console.log(title);
+        const { page = 1, limit = 5, title, sort } = queryParams;
+        const query = {};
+        if (title) {
+            query.title = { $regex: title, $options: 'i' };
+        }
+        const sortObject = (0, sort_utils_1.sortFunction)(sort);
         const blogs = await this.blogModel
-            .find()
+            .find(query)
             .skip(page - 1)
+            .sort(sortObject)
             .limit(limit)
             .exec();
-        const count = await this.blogModel.countDocuments();
+        const count = await this.blogModel.countDocuments(query);
         return { count, blogs };
     }
     async findOneBlog(id) {

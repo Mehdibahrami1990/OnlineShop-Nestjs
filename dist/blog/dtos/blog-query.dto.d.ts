@@ -1,5 +1,3 @@
-export declare class BlogQueryDto {
-    page?: number;
-    limit?: number;
-    title?: string;
+import { GeneralQueryDto } from 'src/shared/dtos/general-query.dto';
+export declare class BlogQueryDto extends GeneralQueryDto {
 }

@@ -1,13 +1,3 @@
-import { IsOptional, IsPositive, IsString } from 'class-validator';
+import { GeneralQueryDto } from 'src/shared/dtos/general-query.dto';
 
-export class BlogQueryDto {
-  @IsOptional()
-  @IsPositive()
-  page?: number;
-  @IsOptional()
-  @IsPositive()
-  limit?: number;
-  @IsOptional()
-  @IsString()
-  title?: string;
-}
+export class BlogQueryDto extends GeneralQueryDto {}
