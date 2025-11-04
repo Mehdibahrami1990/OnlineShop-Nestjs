@@ -2,8 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { BlogDto } from './dtos/blog.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { BlogSchema } from './schemas/blog.schema';
-import { Model } from 'mongoose';
+import { Model, SortOrder } from 'mongoose';
 import { BlogQueryDto } from './dtos/blog-query.dto';
+import { sortFunction } from 'src/shared/utils/sort-utils';
 
 @Injectable()
 export class BlogService {
@@ -12,14 +13,22 @@ export class BlogService {
   ) {}
 
   async findAll(queryParams: BlogQueryDto) {
-    const { page = 1, limit = 5, title } = queryParams;
-    console.log(title);
+    const { page = 1, limit = 5, title, sort } = queryParams;
+    const query: any = {};
+    if (title) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      query.title = { $regex: title, $options: 'i' };
+    }
+    const sortObject: Record<string, SortOrder> = sortFunction(sort);
     const blogs = await this.blogModel
-      .find()
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      .find(query)
       .skip(page - 1)
+      .sort(sortObject)
       .limit(limit)
       .exec();
-    const count = await this.blogModel.countDocuments();
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+    const count = await this.blogModel.countDocuments(query);
     return { count, blogs };
   }
   async findOneBlog(id: string) {

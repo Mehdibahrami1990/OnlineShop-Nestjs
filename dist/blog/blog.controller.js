@@ -42,7 +42,7 @@ let BlogController = class BlogController {
 exports.BlogController = BlogController;
 __decorate([
     (0, common_1.Get)(),
-    openapi.ApiResponse({ status: 200, type: [Object] }),
+    openapi.ApiResponse({ status: 200 }),
     __param(0, (0, common_1.Query)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [blog_query_dto_1.BlogQueryDto]),
