@@ -16,6 +16,7 @@ const blog_category_schema_1 = require("./blog-category.schema");
 let BlogSchema = class BlogSchema extends mongoose_2.Document {
     title;
     content;
+    image;
     category;
 };
 exports.BlogSchema = BlogSchema;
@@ -27,6 +28,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], BlogSchema.prototype, "content", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], BlogSchema.prototype, "image", void 0);
 __decorate([
     (0, mongoose_1.Prop)({
         type: mongoose_2.Types.ObjectId,

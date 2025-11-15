@@ -8,7 +8,8 @@ export class BlogSchema extends Document {
   title: string;
   @Prop()
   content: string;
-
+  @Prop()
+  image: string;
   @Prop({
     type: Types.ObjectId,
     ref: BlogCategorySchema.name,

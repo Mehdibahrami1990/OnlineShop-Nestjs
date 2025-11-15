@@ -15,8 +15,9 @@ const class_validator_1 = require("class-validator");
 class BlogCategoryDto {
     title;
     content;
+    image;
     static _OPENAPI_METADATA_FACTORY() {
-        return { title: { required: true, type: () => String }, content: { required: true, type: () => String } };
+        return { title: { required: true, type: () => String }, content: { required: true, type: () => String }, image: { required: true, type: () => String } };
     }
 }
 exports.BlogCategoryDto = BlogCategoryDto;
@@ -30,4 +31,9 @@ __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     __metadata("design:type", String)
 ], BlogCategoryDto.prototype, "content", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    __metadata("design:type", String)
+], BlogCategoryDto.prototype, "image", void 0);
 //# sourceMappingURL=blog-category.dto.js.map

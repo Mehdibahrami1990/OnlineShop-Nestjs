@@ -15,6 +15,7 @@ const mongoose_2 = require("mongoose");
 let BlogCategorySchema = class BlogCategorySchema extends mongoose_2.Document {
     title;
     content;
+    image;
 };
 exports.BlogCategorySchema = BlogCategorySchema;
 __decorate([
@@ -25,6 +26,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], BlogCategorySchema.prototype, "content", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], BlogCategorySchema.prototype, "image", void 0);
 exports.BlogCategorySchema = BlogCategorySchema = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], BlogCategorySchema);

@@ -2,6 +2,7 @@ import { Document } from 'mongoose';
 export declare class BlogCategorySchema extends Document {
     title: string;
     content: string;
+    image: string;
 }
 export declare const blogCategorySchema: import("mongoose").Schema<BlogCategorySchema, import("mongoose").Model<BlogCategorySchema, any, any, any, Document<unknown, any, BlogCategorySchema, any, {}> & BlogCategorySchema & Required<{
     _id: unknown;
