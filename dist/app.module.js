@@ -13,6 +13,8 @@ const app_service_1 = require("./app.service");
 const blog_module_1 = require("./blog/blog.module");
 const mongoose_1 = require("@nestjs/mongoose");
 const config_1 = require("@nestjs/config");
+const serve_static_1 = require("@nestjs/serve-static");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -22,6 +24,10 @@ exports.AppModule = AppModule = __decorate([
             blog_module_1.BlogModule,
             config_1.ConfigModule.forRoot({ isGlobal: true }),
             mongoose_1.MongooseModule.forRoot(process.env.MONGO_URI),
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: (0, path_1.join)(__dirname, '..', 'files'),
+                serveRoot: '/files',
+            }),
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
