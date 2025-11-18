@@ -13,7 +13,7 @@ import { AppService } from './app.service';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { ApiBody, ApiConsumes } from '@nestjs/swagger';
 import { saveImage } from './shared/utils/file-utils';
-import { UploadFilesDto } from './shared/dtos/upload-files.dto';
+// import { UploadFilesDto } from './shared/dtos/upload-files.dto';
 
 @Controller()
 export class AppController {
@@ -76,8 +76,8 @@ export class AppController {
   @UseInterceptors(FilesInterceptor('files'))
   uploadFiles(
     @UploadedFiles() files: Array<Express.Multer.File>,
-    @Body() body: UploadFilesDto,
+    // @Body() body: UploadFilesDto,
   ) {
-    console.log(files, body);
+    console.log(files);
   }
 }

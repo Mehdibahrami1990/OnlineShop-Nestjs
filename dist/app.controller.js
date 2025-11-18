@@ -19,21 +19,21 @@ const app_service_1 = require("./app.service");
 const platform_express_1 = require("@nestjs/platform-express");
 const swagger_1 = require("@nestjs/swagger");
 const file_utils_1 = require("./shared/utils/file-utils");
-const upload_files_dto_1 = require("./shared/dtos/upload-files.dto");
 let AppController = class AppController {
     appService;
     constructor(appService) {
         this.appService = appService;
     }
     async uploadFile(file, folder, width, height) {
+        console.log(file);
         const savedPath = await (0, file_utils_1.saveImage)(file, folder, {
             width: width ? +width : undefined,
             height: height ? +height : undefined,
         });
         return { message: 'File uploaded successfully', path: savedPath };
     }
-    uploadFiles(files, body) {
-        console.log(files, body);
+    uploadFiles(files) {
+        console.log(files);
     }
 };
 exports.AppController = AppController;
@@ -89,10 +89,8 @@ __decorate([
     (0, common_1.UseInterceptors)((0, platform_express_1.FilesInterceptor)('files')),
     openapi.ApiResponse({ status: 201 }),
     __param(0, (0, common_1.UploadedFiles)()),
-    __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Array,
-        upload_files_dto_1.UploadFilesDto]),
+    __metadata("design:paramtypes", [Array]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "uploadFiles", null);
 exports.AppController = AppController = __decorate([

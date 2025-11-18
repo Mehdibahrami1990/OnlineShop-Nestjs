@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+// import { LogFilter } from './shared/filters/log.filter';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +15,7 @@ async function bootstrap() {
       transformOptions: { enableImplicitConversion: true },
     }),
   );
+  // app.useGlobalFilters(new LogFilter());
 
   const config = new DocumentBuilder().setTitle('Nest App').build();
   const document = SwaggerModule.createDocument(app, config);

@@ -43,5 +43,6 @@ export const saveImage = async (
 
   return mainPath;
 };
+
 const sanitizeName = (name: string): string =>
   name.replace(/[^a-zA-Z0-9.\-_]/g, '_');

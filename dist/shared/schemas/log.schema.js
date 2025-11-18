@@ -8,30 +8,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
-const common_1 = require("@nestjs/common");
+exports.logSchema = exports.LogSchema = exports.LogType = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-const log_schema_1 = require("./shared/schemas/log.schema");
 const mongoose_2 = require("mongoose");
-let AppService = class AppService {
-    logModel;
-    constructor(logModel) {
-        this.logModel = logModel;
-    }
-    async log(body) {
-        const newLog = new this.logModel(body);
-        await newLog.save();
-        return newLog;
-    }
+var LogType;
+(function (LogType) {
+    LogType["Error"] = "error";
+})(LogType || (exports.LogType = LogType = {}));
+let LogSchema = class LogSchema extends mongoose_2.Document {
+    content;
+    type;
 };
-exports.AppService = AppService;
-exports.AppService = AppService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, mongoose_1.InjectModel)(log_schema_1.LogSchema.name)),
-    __metadata("design:paramtypes", [mongoose_2.Model])
-], AppService);
-//# sourceMappingURL=app.service.js.map
+exports.LogSchema = LogSchema;
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], LogSchema.prototype, "content", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], LogSchema.prototype, "type", void 0);
+exports.LogSchema = LogSchema = __decorate([
+    (0, mongoose_1.Schema)({ timestamps: true })
+], LogSchema);
+exports.logSchema = mongoose_1.SchemaFactory.createForClass(LogSchema);
+//# sourceMappingURL=log.schema.js.map
