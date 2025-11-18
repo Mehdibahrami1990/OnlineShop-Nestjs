@@ -15,6 +15,9 @@ const mongoose_1 = require("@nestjs/mongoose");
 const config_1 = require("@nestjs/config");
 const serve_static_1 = require("@nestjs/serve-static");
 const path_1 = require("path");
+const core_1 = require("@nestjs/core");
+const log_filter_1 = require("./shared/filters/log.filter");
+const log_schema_1 = require("./shared/schemas/log.schema");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -28,9 +31,21 @@ exports.AppModule = AppModule = __decorate([
                 rootPath: (0, path_1.join)(__dirname, '..', 'files'),
                 serveRoot: '/files',
             }),
+            mongoose_1.MongooseModule.forFeature([
+                {
+                    name: log_schema_1.LogSchema.name,
+                    schema: log_schema_1.logSchema,
+                },
+            ]),
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        providers: [
+            app_service_1.AppService,
+            {
+                provide: core_1.APP_FILTER,
+                useClass: log_filter_1.LogFilter,
+            },
+        ],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map
