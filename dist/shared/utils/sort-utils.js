@@ -10,6 +10,9 @@ const sortFunction = (sort) => {
     else if (sort === general_query_dto_1.Sort.UpdatedAt) {
         sortObject = { updatedAt: -1 };
     }
+    else if (sort === general_query_dto_1.Sort.LastName) {
+        sortObject = { lastName: 1 };
+    }
     else {
         sortObject = { createdAt: -1 };
     }

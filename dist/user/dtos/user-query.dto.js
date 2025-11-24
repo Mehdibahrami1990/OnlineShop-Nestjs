@@ -9,44 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GeneralQueryDto = exports.Sort = void 0;
+exports.UserQueryDto = void 0;
 const openapi = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
-var Sort;
-(function (Sort) {
-    Sort["Title"] = "title";
-    Sort["CreatedAt"] = "createdAt";
-    Sort["UpdatedAt"] = "updatedAt";
-    Sort["LastName"] = "lastName";
-})(Sort || (exports.Sort = Sort = {}));
-class GeneralQueryDto {
-    page;
-    limit;
-    title;
-    sort;
+const general_query_dto_1 = require("../../shared/dtos/general-query.dto");
+class UserQueryDto extends general_query_dto_1.GeneralQueryDto {
+    lastName;
+    mobile;
     static _OPENAPI_METADATA_FACTORY() {
-        return { page: { required: false, type: () => Number, minimum: 1 }, limit: { required: false, type: () => Number, minimum: 1 }, title: { required: false, type: () => String }, sort: { required: false, enum: require("./general-query.dto").Sort } };
+        return { lastName: { required: false, type: () => String }, mobile: { required: false, type: () => String } };
     }
 }
-exports.GeneralQueryDto = GeneralQueryDto;
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsPositive)(),
-    __metadata("design:type", Number)
-], GeneralQueryDto.prototype, "page", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsPositive)(),
-    __metadata("design:type", Number)
-], GeneralQueryDto.prototype, "limit", void 0);
+exports.UserQueryDto = UserQueryDto;
 __decorate([
     (0, class_validator_1.IsOptional)(),
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], GeneralQueryDto.prototype, "title", void 0);
+], UserQueryDto.prototype, "lastName", void 0);
 __decorate([
     (0, class_validator_1.IsOptional)(),
-    (0, class_validator_1.IsEnum)(Sort),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], GeneralQueryDto.prototype, "sort", void 0);
-//# sourceMappingURL=general-query.dto.js.map
+], UserQueryDto.prototype, "mobile", void 0);
+//# sourceMappingURL=user-query.dto.js.map

@@ -20,6 +20,7 @@ const log_filter_1 = require("./shared/filters/log.filter");
 const log_schema_1 = require("./shared/schemas/log.schema");
 const log_interceptor_1 = require("./shared/interceptors/log.interceptor");
 const time_middleware_1 = require("./shared/middleware/time.middleware");
+const user_module_1 = require("./user/user.module");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer.apply(time_middleware_1.TimeMiddleware).forRoutes('*');
@@ -46,6 +47,7 @@ exports.AppModule = AppModule = __decorate([
                     schema: log_schema_1.logSchema,
                 },
             ]),
+            user_module_1.UserModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

@@ -1,7 +1,8 @@
 export declare enum Sort {
     Title = "title",
     CreatedAt = "createdAt",
-    UpdatedAt = "updatedAt"
+    UpdatedAt = "updatedAt",
+    LastName = "lastName"
 }
 export declare class GeneralQueryDto {
     page?: number;
