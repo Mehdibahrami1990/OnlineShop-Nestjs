@@ -18,6 +18,7 @@ const common_1 = require("@nestjs/common");
 const blog_dto_1 = require("../dtos/blog.dto");
 const blog_service_1 = require("../services/blog.service");
 const blog_query_dto_1 = require("../dtos/blog-query.dto");
+const swagger_1 = require("@nestjs/swagger");
 let BlogController = class BlogController {
     blogService;
     constructor(blogService) {
@@ -82,6 +83,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BlogController.prototype, "delete", null);
 exports.BlogController = BlogController = __decorate([
+    (0, swagger_1.ApiHeader)({
+        name: 'apikey',
+        description: 'API KEY',
+    }),
     (0, common_1.Controller)('blog'),
     __metadata("design:paramtypes", [blog_service_1.BlogService])
 ], BlogController);

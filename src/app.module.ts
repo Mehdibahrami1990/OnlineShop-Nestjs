@@ -11,6 +11,10 @@ import { LogFilter } from './shared/filters/log.filter';
 import { logSchema, LogSchema } from './shared/schemas/log.schema';
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
     BlogModule,
     ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRoot(process.env.MONGO_URI!),
