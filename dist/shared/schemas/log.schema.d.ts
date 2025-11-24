@@ -1,9 +1,14 @@
 import { Document } from 'mongoose';
 export declare enum LogType {
-    Error = "error"
+    Error = "error",
+    POST = "POST",
+    PUT = "PUT",
+    DELETE = "DELETE",
+    PATCH = "PATCH"
 }
 export declare class LogSchema extends Document {
     content: string;
+    url: string;
     type: LogType;
 }
 export declare const logSchema: import("mongoose").Schema<LogSchema, import("mongoose").Model<LogSchema, any, any, any, Document<unknown, any, LogSchema, any, {}> & LogSchema & Required<{

@@ -5,6 +5,9 @@ export class LogDto {
   @IsEmpty()
   @IsString()
   content: string;
+  @IsEmpty()
+  @IsString()
+  url: string;
   @IsNotEmpty()
   @IsEnum(LogType)
   type: LogType;

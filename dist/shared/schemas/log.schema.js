@@ -15,9 +15,14 @@ const mongoose_2 = require("mongoose");
 var LogType;
 (function (LogType) {
     LogType["Error"] = "error";
+    LogType["POST"] = "POST";
+    LogType["PUT"] = "PUT";
+    LogType["DELETE"] = "DELETE";
+    LogType["PATCH"] = "PATCH";
 })(LogType || (exports.LogType = LogType = {}));
 let LogSchema = class LogSchema extends mongoose_2.Document {
     content;
+    url;
     type;
 };
 exports.LogSchema = LogSchema;
@@ -25,6 +30,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], LogSchema.prototype, "content", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], LogSchema.prototype, "url", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)

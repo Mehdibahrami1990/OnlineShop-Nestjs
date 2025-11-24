@@ -9,38 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LogFilter = void 0;
+exports.LogInterceptor = void 0;
 const common_1 = require("@nestjs/common");
+const rxjs_1 = require("rxjs");
 const app_service_1 = require("../../app.service");
 const log_schema_1 = require("../schemas/log.schema");
-let LogFilter = class LogFilter {
-    appSevice;
-    constructor(appSevice) {
-        this.appSevice = appSevice;
+let LogInterceptor = class LogInterceptor {
+    appService;
+    constructor(appService) {
+        this.appService = appService;
     }
-    async catch(exception, host) {
-        const response = host.switchToHttp().getResponse();
-        const status = exception.getStatus();
-        const request = host.switchToHttp().getRequest();
-        if (status == 404) {
-            response.status(404).send({
-                statusCode: status,
-                message: 'Not Found',
-            });
-        }
-        else {
-            response.send(exception.getResponse());
-        }
-        await this.appSevice.log({
-            type: log_schema_1.LogType.Error,
-            content: JSON.stringify(exception.getResponse()),
-            url: request.url,
-        });
+    intercept(context, next) {
+        const request = context.switchToHttp().getRequest();
+        const method = request.method;
+        const logType = log_schema_1.LogType[method];
+        console.log(request.method);
+        console.log('Before');
+        return next.handle().pipe((0, rxjs_1.tap)((response) => {
+            if (request.method !== 'GET') {
+                void this.appService.log({
+                    content: JSON.stringify(response),
+                    url: request.url,
+                    type: logType,
+                });
+            }
+        }));
     }
 };
-exports.LogFilter = LogFilter;
-exports.LogFilter = LogFilter = __decorate([
-    (0, common_1.Catch)(common_1.HttpException),
+exports.LogInterceptor = LogInterceptor;
+exports.LogInterceptor = LogInterceptor = __decorate([
+    (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
-], LogFilter);
-//# sourceMappingURL=log.filter.js.map
+], LogInterceptor);
+//# sourceMappingURL=log.interceptor.js.map

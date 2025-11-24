@@ -17,7 +17,7 @@ async function bootstrap() {
     }),
   );
   // app.useGlobalFilters(new LogFilter());
-  app.useGlobalGuards(new ApiKeyGuard());
+  // app.useGlobalGuards(new ApiKeyGuard());
   const config = new DocumentBuilder().setTitle('Nest App').build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/documentation', app, document);

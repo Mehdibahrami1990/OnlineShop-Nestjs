@@ -11,19 +11,20 @@ import {
 import { BlogDto } from '../dtos/blog.dto';
 import { BlogService } from '../services/blog.service';
 import { BlogQueryDto } from '../dtos/blog-query.dto';
-import { ApiHeader } from '@nestjs/swagger';
+// import { ApiHeader } from '@nestjs/swagger';
 
 // @ApiTags('Blog')
-@ApiHeader({
-  name: 'apikey',
-  description: 'API KEY',
-})
+// @ApiHeader({
+//   name: 'apikey',
+//   description: 'API KEY',
+// })
 @Controller('blog')
 export class BlogController {
   constructor(private readonly blogService: BlogService) {}
 
   @Get()
   findAll(@Query() queryParams: BlogQueryDto) {
+    console.log('Contriller');
     return this.blogService.findAll(queryParams);
   }
   @Post()

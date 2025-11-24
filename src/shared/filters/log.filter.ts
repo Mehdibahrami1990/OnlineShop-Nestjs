@@ -4,7 +4,7 @@ import {
   ExceptionFilter,
   HttpException,
 } from '@nestjs/common';
-import { Response } from 'express';
+import { Request, Response } from 'express';
 import { AppService } from 'src/app.service';
 import { LogType } from '../schemas/log.schema';
 
@@ -15,7 +15,7 @@ export class LogFilter<T extends HttpException> implements ExceptionFilter {
   async catch(exception: T, host: ArgumentsHost) {
     const response = host.switchToHttp().getResponse<Response>();
     const status = exception.getStatus();
-
+    const request = host.switchToHttp().getRequest<Request>();
     if (status == 404) {
       response.status(404).send({
         statusCode: status,
@@ -27,6 +27,7 @@ export class LogFilter<T extends HttpException> implements ExceptionFilter {
     await this.appSevice.log({
       type: LogType.Error,
       content: JSON.stringify(exception.getResponse()),
+      url: request.url,
     });
 
     // console.log(exception);
