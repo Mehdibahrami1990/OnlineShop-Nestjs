@@ -18,8 +18,8 @@ export class LogInterceptor implements NestInterceptor {
     const method = request.method as HttpMethod;
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const logType: LogType = LogType[method];
-    console.log(request.method);
-    console.log('Before');
+    // console.log(request.method);
+    // console.log('Before');
 
     return next.handle().pipe(
       tap((response) => {

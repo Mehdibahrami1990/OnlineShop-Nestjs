@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BlogModule } from './blog/blog.module';
@@ -10,6 +10,7 @@ import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { LogFilter } from './shared/filters/log.filter';
 import { logSchema, LogSchema } from './shared/schemas/log.schema';
 import { LogInterceptor } from './shared/interceptors/log.interceptor';
+import { TimeMiddleware } from './shared/middleware/time.middleware';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -43,4 +44,8 @@ import { LogInterceptor } from './shared/interceptors/log.interceptor';
     },
   ],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(TimeMiddleware).forRoutes('*');
+  }
+}

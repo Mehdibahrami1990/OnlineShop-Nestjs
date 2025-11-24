@@ -19,7 +19,11 @@ const core_1 = require("@nestjs/core");
 const log_filter_1 = require("./shared/filters/log.filter");
 const log_schema_1 = require("./shared/schemas/log.schema");
 const log_interceptor_1 = require("./shared/interceptors/log.interceptor");
+const time_middleware_1 = require("./shared/middleware/time.middleware");
 let AppModule = class AppModule {
+    configure(consumer) {
+        consumer.apply(time_middleware_1.TimeMiddleware).forRoutes('*');
+    }
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([

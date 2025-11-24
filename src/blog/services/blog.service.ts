@@ -15,7 +15,7 @@ export class BlogService {
   async findAll(queryParams: BlogQueryDto, selectObject: any = { __v: 0 }) {
     const { page = 1, limit = 5, title, sort } = queryParams;
     const query: any = {};
-    console.log('Services');
+    // console.log('Services');
     if (title) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       query.title = { $regex: title, $options: 'i' };
