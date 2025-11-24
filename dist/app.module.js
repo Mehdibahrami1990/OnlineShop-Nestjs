@@ -18,6 +18,7 @@ const path_1 = require("path");
 const core_1 = require("@nestjs/core");
 const log_filter_1 = require("./shared/filters/log.filter");
 const log_schema_1 = require("./shared/schemas/log.schema");
+const log_interceptor_1 = require("./shared/interceptors/log.interceptor");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -48,6 +49,10 @@ exports.AppModule = AppModule = __decorate([
             {
                 provide: core_1.APP_FILTER,
                 useClass: log_filter_1.LogFilter,
+            },
+            {
+                provide: core_1.APP_INTERCEPTOR,
+                useClass: log_interceptor_1.LogInterceptor,
             },
         ],
     })

@@ -26,6 +26,7 @@ let BlogService = class BlogService {
     async findAll(queryParams, selectObject = { __v: 0 }) {
         const { page = 1, limit = 5, title, sort } = queryParams;
         const query = {};
+        console.log('Services');
         if (title) {
             query.title = { $regex: title, $options: 'i' };
         }

@@ -15,9 +15,10 @@ const class_validator_1 = require("class-validator");
 const log_schema_1 = require("../schemas/log.schema");
 class LogDto {
     content;
+    url;
     type;
     static _OPENAPI_METADATA_FACTORY() {
-        return { content: { required: true, type: () => String }, type: { required: true, type: () => String, enum: require("../schemas/log.schema").LogType } };
+        return { content: { required: true, type: () => String }, url: { required: true, type: () => String }, type: { required: true, enum: require("../schemas/log.schema").LogType } };
     }
 }
 exports.LogDto = LogDto;
@@ -26,6 +27,11 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], LogDto.prototype, "content", void 0);
+__decorate([
+    (0, class_validator_1.IsEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], LogDto.prototype, "url", void 0);
 __decorate([
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsEnum)(log_schema_1.LogType),
