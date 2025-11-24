@@ -23,8 +23,6 @@ let LogInterceptor = class LogInterceptor {
         const request = context.switchToHttp().getRequest();
         const method = request.method;
         const logType = log_schema_1.LogType[method];
-        console.log(request.method);
-        console.log('Before');
         return next.handle().pipe((0, rxjs_1.tap)((response) => {
             if (request.method !== 'GET') {
                 void this.appService.log({

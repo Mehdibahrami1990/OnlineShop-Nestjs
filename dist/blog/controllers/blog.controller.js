@@ -24,7 +24,6 @@ let BlogController = class BlogController {
         this.blogService = blogService;
     }
     findAll(queryParams) {
-        console.log('Contriller');
         return this.blogService.findAll(queryParams);
     }
     createCategory(body) {
