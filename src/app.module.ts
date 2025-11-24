@@ -11,6 +11,7 @@ import { LogFilter } from './shared/filters/log.filter';
 import { logSchema, LogSchema } from './shared/schemas/log.schema';
 import { LogInterceptor } from './shared/interceptors/log.interceptor';
 import { TimeMiddleware } from './shared/middleware/time.middleware';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -30,6 +31,7 @@ import { TimeMiddleware } from './shared/middleware/time.middleware';
         schema: logSchema,
       },
     ]),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [
