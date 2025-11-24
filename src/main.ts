@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { ApiKeyGuard } from './shared/guards/api-key.guard';
 // import { LogFilter } from './shared/filters/log.filter';
 
 async function bootstrap() {
@@ -16,7 +17,7 @@ async function bootstrap() {
     }),
   );
   // app.useGlobalFilters(new LogFilter());
-
+  app.useGlobalGuards(new ApiKeyGuard());
   const config = new DocumentBuilder().setTitle('Nest App').build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/documentation', app, document);
