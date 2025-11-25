@@ -12,4 +12,8 @@ export class UserDto {
   @IsNotEmpty()
   @IsString()
   mobile: string;
+
+  @IsNotEmpty()
+  @IsString()
+  password: string;
 }

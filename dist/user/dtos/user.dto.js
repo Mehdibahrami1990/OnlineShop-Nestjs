@@ -16,8 +16,9 @@ class UserDto {
     firstName;
     lastName;
     mobile;
+    password;
     static _OPENAPI_METADATA_FACTORY() {
-        return { firstName: { required: true, type: () => String }, lastName: { required: true, type: () => String }, mobile: { required: true, type: () => String } };
+        return { firstName: { required: true, type: () => String }, lastName: { required: true, type: () => String }, mobile: { required: true, type: () => String }, password: { required: true, type: () => String } };
     }
 }
 exports.UserDto = UserDto;
@@ -36,4 +37,9 @@ __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
 ], UserDto.prototype, "mobile", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], UserDto.prototype, "password", void 0);
 //# sourceMappingURL=user.dto.js.map

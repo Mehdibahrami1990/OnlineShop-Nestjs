@@ -16,6 +16,7 @@ let User = class User extends mongoose_2.Document {
     firstName;
     lastName;
     mobile;
+    passwword;
 };
 exports.User = User;
 __decorate([
@@ -30,6 +31,10 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], User.prototype, "mobile", void 0);
+__decorate([
+    (0, mongoose_1.Prop)(),
+    __metadata("design:type", String)
+], User.prototype, "passwword", void 0);
 exports.User = User = __decorate([
     (0, mongoose_1.Schema)({ timestamps: true })
 ], User);
