@@ -18,6 +18,7 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("../services/user.service");
 const user_query_dto_1 = require("../dtos/user-query.dto");
 const user_dto_1 = require("../dtos/user.dto");
+const english_pipe_1 = require("../../shared/pipes/english.pipe");
 let UserController = class UserController {
     userService;
     constructor(userService) {
@@ -51,7 +52,7 @@ __decorate([
 __decorate([
     (0, common_1.Post)(),
     openapi.ApiResponse({ status: 201, type: Object }),
-    __param(0, (0, common_1.Body)()),
+    __param(0, (0, common_1.Body)(english_pipe_1.EnglishPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", void 0)
