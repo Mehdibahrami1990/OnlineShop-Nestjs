@@ -5,6 +5,7 @@ import { BlogSchema } from '../schemas/blog.schema';
 import { Model, SortOrder } from 'mongoose';
 import { BlogQueryDto } from '../dtos/blog-query.dto';
 import { sortFunction } from 'src/shared/utils/sort-utils';
+import { UpdateBlogDto } from '../dtos/update-blog.dto';
 
 @Injectable()
 export class BlogService {
@@ -53,7 +54,7 @@ export class BlogService {
     await newBlog.save();
     return newBlog;
   }
-  async update(id: string, body: BlogDto) {
+  async update(id: string, body: UpdateBlogDto) {
     return await this.blogModel.findByIdAndUpdate(id, body, {
       new: true,
     });

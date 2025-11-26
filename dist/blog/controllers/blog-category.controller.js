@@ -19,6 +19,7 @@ const swagger_1 = require("@nestjs/swagger");
 const blog_category_dto_1 = require("../dtos/blog-category.dto");
 const blog_category_service_1 = require("../services/blog-category.service");
 const blog_category_query_dto_1 = require("../dtos/blog-category-query.dto");
+const update_blog_category_dto_1 = require("../dtos/update-blog-category.dto");
 let BlogCategoryController = class BlogCategoryController {
     blogCategoryService;
     constructor(blogCategoryService) {
@@ -66,12 +67,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BlogCategoryController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Put)(':id'),
+    (0, common_1.Patch)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, blog_category_dto_1.BlogCategoryDto]),
+    __metadata("design:paramtypes", [String, update_blog_category_dto_1.UdateBlogCategoryDto]),
     __metadata("design:returntype", void 0)
 ], BlogCategoryController.prototype, "update", null);
 __decorate([

@@ -18,6 +18,7 @@ const common_1 = require("@nestjs/common");
 const blog_dto_1 = require("../dtos/blog.dto");
 const blog_service_1 = require("../services/blog.service");
 const blog_query_dto_1 = require("../dtos/blog-query.dto");
+const update_blog_dto_1 = require("../dtos/update-blog.dto");
 let BlogController = class BlogController {
     blogService;
     constructor(blogService) {
@@ -65,12 +66,12 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BlogController.prototype, "findOneCategory", null);
 __decorate([
-    (0, common_1.Put)(':id'),
+    (0, common_1.Patch)(':id'),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, blog_dto_1.BlogDto]),
+    __metadata("design:paramtypes", [String, update_blog_dto_1.UpdateBlogDto]),
     __metadata("design:returntype", void 0)
 ], BlogController.prototype, "update", null);
 __decorate([
