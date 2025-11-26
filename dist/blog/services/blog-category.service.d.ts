@@ -2,6 +2,7 @@ import { BlogCategorySchema } from '../schemas/blog-category.schema';
 import { Model } from 'mongoose';
 import { BlogCategoryDto } from '../dtos/blog-category.dto';
 import { BlogCategoryQueryDto } from '../dtos/blog-category-query.dto';
+import { UdateBlogCategoryDto } from '../dtos/update-blog-category.dto';
 export declare class BlogCategoryService {
     private readonly blogCategoryModel;
     constructor(blogCategoryModel: Model<BlogCategorySchema>);
@@ -23,7 +24,7 @@ export declare class BlogCategoryService {
     }> & {
         __v: number;
     }>;
-    update(id: string, body: BlogCategoryDto): Promise<(import("mongoose").Document<unknown, {}, BlogCategorySchema, {}, {}> & BlogCategorySchema & Required<{
+    update(id: string, body: UdateBlogCategoryDto): Promise<(import("mongoose").Document<unknown, {}, BlogCategorySchema, {}, {}> & BlogCategorySchema & Required<{
         _id: unknown;
     }> & {
         __v: number;

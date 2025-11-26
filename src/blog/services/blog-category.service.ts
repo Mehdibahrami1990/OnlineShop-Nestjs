@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { BlogCategoryDto } from '../dtos/blog-category.dto';
 import { BlogCategoryQueryDto } from '../dtos/blog-category-query.dto';
 import { sortFunction } from 'src/shared/utils/sort-utils';
+import { UdateBlogCategoryDto } from '../dtos/update-blog-category.dto';
 
 @Injectable()
 export class BlogCategoryService {
@@ -60,7 +61,7 @@ export class BlogCategoryService {
     return newBlogCategory;
   }
 
-  async update(id: string, body: BlogCategoryDto) {
+  async update(id: string, body: UdateBlogCategoryDto) {
     return await this.blogCategoryModel.findByIdAndUpdate(id, body, {
       new: true,
     });

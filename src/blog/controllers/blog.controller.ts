@@ -4,13 +4,15 @@ import {
   Delete,
   Get,
   Param,
+  Patch,
   Post,
-  Put,
+  // Put,
   Query,
 } from '@nestjs/common';
 import { BlogDto } from '../dtos/blog.dto';
 import { BlogService } from '../services/blog.service';
 import { BlogQueryDto } from '../dtos/blog-query.dto';
+import { UpdateBlogDto } from '../dtos/update-blog.dto';
 // import { ApiHeader } from '@nestjs/swagger';
 
 // @ApiTags('Blog')
@@ -36,8 +38,8 @@ export class BlogController {
   findOneCategory(@Param('id') id: string) {
     return this.blogService.findOneBlog(id);
   }
-  @Put(':id')
-  update(@Param('id') id: string, @Body() body: BlogDto) {
+  @Patch(':id')
+  update(@Param('id') id: string, @Body() body: UpdateBlogDto) {
     return this.blogService.update(id, body);
   }
   @Delete(':id')

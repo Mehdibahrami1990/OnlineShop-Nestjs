@@ -1,6 +1,7 @@
 import { BlogDto } from '../dtos/blog.dto';
 import { BlogService } from '../services/blog.service';
 import { BlogQueryDto } from '../dtos/blog-query.dto';
+import { UpdateBlogDto } from '../dtos/update-blog.dto';
 export declare class BlogController {
     private readonly blogService;
     constructor(blogService: BlogService);
@@ -22,7 +23,7 @@ export declare class BlogController {
     }> & {
         __v: number;
     }>;
-    update(id: string, body: BlogDto): Promise<(import("mongoose").Document<unknown, {}, import("../schemas/blog.schema").BlogSchema, {}, {}> & import("../schemas/blog.schema").BlogSchema & Required<{
+    update(id: string, body: UpdateBlogDto): Promise<(import("mongoose").Document<unknown, {}, import("../schemas/blog.schema").BlogSchema, {}, {}> & import("../schemas/blog.schema").BlogSchema & Required<{
         _id: unknown;
     }> & {
         __v: number;
