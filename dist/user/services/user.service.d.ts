@@ -2,6 +2,7 @@ import { User } from '../schemas/user.schema';
 import { Model } from 'mongoose';
 import { UserQueryDto } from '../dtos/user-query.dto';
 import { UserDto } from '../dtos/user.dto';
+import { UpdateUserDto } from '../dtos/update-user.dto';
 export declare class UserService {
     private readonly userModel;
     constructor(userModel: Model<User>);
@@ -23,7 +24,7 @@ export declare class UserService {
     }> & {
         __v: number;
     }>;
-    update(id: string, body: UserDto): Promise<(import("mongoose").Document<unknown, {}, User, {}, {}> & User & Required<{
+    update(id: string, body: UpdateUserDto): Promise<(import("mongoose").Document<unknown, {}, User, {}, {}> & User & Required<{
         _id: unknown;
     }> & {
         __v: number;
