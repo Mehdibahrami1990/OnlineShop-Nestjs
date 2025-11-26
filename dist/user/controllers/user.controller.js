@@ -21,6 +21,7 @@ const user_dto_1 = require("../dtos/user.dto");
 const english_pipe_1 = require("../../shared/pipes/english.pipe");
 const mobile_pipe_1 = require("../../shared/pipes/mobile.pipe");
 const password_pipe_1 = require("../../shared/pipes/password.pipe");
+const password_interceptor_1 = require("../../shared/interceptors/password.interceptor");
 let UserController = class UserController {
     userService;
     constructor(userService) {
@@ -53,6 +54,7 @@ __decorate([
 ], UserController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Post)(),
+    (0, common_1.UseInterceptors)(password_interceptor_1.PasswordInterceptor),
     openapi.ApiResponse({ status: 201, type: Object }),
     __param(0, (0, common_1.Body)(english_pipe_1.EnglishPipe, mobile_pipe_1.MobilePipe, password_pipe_1.PasswordPipe)),
     __metadata("design:type", Function),

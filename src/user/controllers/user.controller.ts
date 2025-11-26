@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { UserQueryDto } from '../dtos/user-query.dto';
@@ -14,6 +15,7 @@ import { UserDto } from '../dtos/user.dto';
 import { EnglishPipe } from 'src/shared/pipes/english.pipe';
 import { MobilePipe } from 'src/shared/pipes/mobile.pipe';
 import { PasswordPipe } from 'src/shared/pipes/password.pipe';
+import { PasswordInterceptor } from 'src/shared/interceptors/password.interceptor';
 // import { ApiTags } from '@nestjs/swagger';
 
 // @ApiTags('User')
@@ -26,6 +28,7 @@ export class UserController {
     return this.userService.findAll(queryParams);
   }
   @Post()
+  @UseInterceptors(PasswordInterceptor)
   create(@Body(EnglishPipe, MobilePipe, PasswordPipe) body: UserDto) {
     return this.userService.create(body);
   }
