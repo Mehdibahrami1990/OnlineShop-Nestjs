@@ -22,6 +22,7 @@ const english_pipe_1 = require("../../shared/pipes/english.pipe");
 const mobile_pipe_1 = require("../../shared/pipes/mobile.pipe");
 const password_pipe_1 = require("../../shared/pipes/password.pipe");
 const password_interceptor_1 = require("../../shared/interceptors/password.interceptor");
+const update_user_dto_1 = require("../dtos/update-user.dto");
 let UserController = class UserController {
     userService;
     constructor(userService) {
@@ -70,12 +71,13 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "findOne", null);
 __decorate([
-    (0, common_1.Put)(':id'),
+    (0, common_1.Patch)(':id'),
+    (0, common_1.UseInterceptors)(password_interceptor_1.PasswordInterceptor),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    __param(1, (0, common_1.Body)(english_pipe_1.EnglishPipe, mobile_pipe_1.MobilePipe, password_pipe_1.PasswordPipe)),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, user_dto_1.UserDto]),
+    __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)
 ], UserController.prototype, "update", null);
 __decorate([
