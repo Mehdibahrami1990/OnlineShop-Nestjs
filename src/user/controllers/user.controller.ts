@@ -12,6 +12,7 @@ import { UserService } from '../services/user.service';
 import { UserQueryDto } from '../dtos/user-query.dto';
 import { UserDto } from '../dtos/user.dto';
 import { EnglishPipe } from 'src/shared/pipes/english.pipe';
+import { MobilePipe } from 'src/shared/pipes/mobile.pipe';
 // import { ApiTags } from '@nestjs/swagger';
 
 // @ApiTags('User')
@@ -24,7 +25,7 @@ export class UserController {
     return this.userService.findAll(queryParams);
   }
   @Post()
-  create(@Body(EnglishPipe) body: UserDto) {
+  create(@Body(EnglishPipe, MobilePipe) body: UserDto) {
     return this.userService.create(body);
   }
   @Get(':id')
