@@ -4,6 +4,7 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 const common_1 = require("@nestjs/common");
+const duplicate_filter_1 = require("./shared/filters/duplicate.filter");
 async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.enableCors();
@@ -13,6 +14,7 @@ async function bootstrap() {
         forbidNonWhitelisted: true,
         transformOptions: { enableImplicitConversion: true },
     }));
+    app.useGlobalFilters(new duplicate_filter_1.DuplicateFilter());
     const config = new swagger_1.DocumentBuilder().setTitle('Nest App').build();
     const document = swagger_1.SwaggerModule.createDocument(app, config);
     swagger_1.SwaggerModule.setup('/documentation', app, document);

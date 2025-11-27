@@ -9,38 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.userSchema = exports.User = void 0;
-const mongoose_1 = require("@nestjs/mongoose");
-const mongoose_2 = require("mongoose");
-let User = class User extends mongoose_2.Document {
+exports.UserDto = void 0;
+const class_validator_1 = require("class-validator");
+class UserDto {
     firstName;
     lastName;
     mobile;
     password;
-};
-exports.User = User;
+}
+exports.UserDto = UserDto;
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], User.prototype, "firstName", void 0);
+], UserDto.prototype, "firstName", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], User.prototype, "lastName", void 0);
+], UserDto.prototype, "lastName", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({
-        unique: true,
-        type: String,
-        required: true,
-    }),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], User.prototype, "mobile", void 0);
+], UserDto.prototype, "mobile", void 0);
 __decorate([
-    (0, mongoose_1.Prop)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], User.prototype, "password", void 0);
-exports.User = User = __decorate([
-    (0, mongoose_1.Schema)({ timestamps: true })
-], User);
-exports.userSchema = mongoose_1.SchemaFactory.createForClass(User);
-//# sourceMappingURL=user.schema.js.map
+], UserDto.prototype, "password", void 0);
+//# sourceMappingURL=user.dto%20copy.js.map
