@@ -57,7 +57,7 @@ __decorate([
     (0, common_1.Post)(),
     (0, common_1.UseInterceptors)(password_interceptor_1.PasswordInterceptor),
     openapi.ApiResponse({ status: 201, type: Object }),
-    __param(0, (0, common_1.Body)(english_pipe_1.EnglishPipe, mobile_pipe_1.MobilePipe, password_pipe_1.PasswordPipe)),
+    __param(0, (0, common_1.Body)(english_pipe_1.EnglishPipe, mobile_pipe_1.MobilePipe, new password_pipe_1.PasswordPipe(true))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [user_dto_1.UserDto]),
     __metadata("design:returntype", void 0)
@@ -75,7 +75,7 @@ __decorate([
     (0, common_1.UseInterceptors)(password_interceptor_1.PasswordInterceptor),
     openapi.ApiResponse({ status: 200, type: Object }),
     __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)(english_pipe_1.EnglishPipe, mobile_pipe_1.MobilePipe, password_pipe_1.PasswordPipe)),
+    __param(1, (0, common_1.Body)(english_pipe_1.EnglishPipe, mobile_pipe_1.MobilePipe, new password_pipe_1.PasswordPipe(true))),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, update_user_dto_1.UpdateUserDto]),
     __metadata("design:returntype", void 0)

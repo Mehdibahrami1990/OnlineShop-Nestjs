@@ -31,7 +31,7 @@ export class UserController {
   }
   @Post()
   @UseInterceptors(PasswordInterceptor)
-  create(@Body(EnglishPipe, MobilePipe, PasswordPipe) body: UserDto) {
+  create(@Body(EnglishPipe, MobilePipe, new PasswordPipe(true)) body: UserDto) {
     return this.userService.create(body);
   }
   @Get(':id')
@@ -42,7 +42,7 @@ export class UserController {
   @UseInterceptors(PasswordInterceptor)
   update(
     @Param('id') id: string,
-    @Body(EnglishPipe, MobilePipe, PasswordPipe) body: UpdateUserDto,
+    @Body(EnglishPipe, MobilePipe, new PasswordPipe(true)) body: UpdateUserDto,
   ) {
     return this.userService.update(id, body);
   }

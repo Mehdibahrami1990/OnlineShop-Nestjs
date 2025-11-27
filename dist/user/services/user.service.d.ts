@@ -3,6 +3,7 @@ import { Model } from 'mongoose';
 import { UserQueryDto } from '../dtos/user-query.dto';
 import { UserDto } from '../dtos/user.dto';
 import { UpdateUserDto } from '../dtos/update-user.dto';
+import { AuthDto } from '../dtos/auth.dto';
 export declare class UserService {
     private readonly userModel;
     constructor(userModel: Model<User>);
@@ -34,4 +35,10 @@ export declare class UserService {
     }> & {
         __v: number;
     }>;
+    findByMobile(mobile: string): Promise<import("mongoose").Document<unknown, {}, User, {}, {}> & User & Required<{
+        _id: unknown;
+    }> & {
+        __v: number;
+    }>;
+    signin(body: AuthDto): Promise<void>;
 }

@@ -38,11 +38,18 @@ var __importStar = (this && this.__importStar) || (function () {
         return result;
     };
 })();
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PasswordPipe = void 0;
 const common_1 = require("@nestjs/common");
 const bcrypt = __importStar(require("bcrypt"));
 let PasswordPipe = class PasswordPipe {
+    isNew;
+    constructor(isNew) {
+        this.isNew = isNew;
+    }
     async transform(value) {
         if ('password' in value && typeof value.password === 'string') {
             const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&^_-]{8,}$/;
@@ -51,9 +58,14 @@ let PasswordPipe = class PasswordPipe {
                 throw new common_1.BadRequestException('The password must be at least 8 characters long and contain both letters and numbers');
             }
             else {
-                const salt = await bcrypt.genSalt();
-                const hashedPassword = await bcrypt.hash(value.password, salt);
-                return { ...value, password: hashedPassword };
+                if (this.isNew) {
+                    const salt = await bcrypt.genSalt();
+                    const hashedPassword = await bcrypt.hash(value.password, salt);
+                    return { ...value, password: hashedPassword };
+                }
+                else {
+                    return value;
+                }
             }
         }
         return value;
@@ -61,6 +73,7 @@ let PasswordPipe = class PasswordPipe {
 };
 exports.PasswordPipe = PasswordPipe;
 exports.PasswordPipe = PasswordPipe = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [Boolean])
 ], PasswordPipe);
 //# sourceMappingURL=password.pipe.js.map
